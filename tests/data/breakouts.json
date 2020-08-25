@@ -1,0 +1,9 @@
+{
+  "buyBreakout": 100.0,
+  "sellBreakout": 99.0,
+  "buyStoploss": 99.0,
+  "sellStoploss": 100.0,
+  "buyTarget": 101.00,
+  "sellTarget": 98.0,
+  "quantity": 1
+}
