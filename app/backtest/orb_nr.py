@@ -16,7 +16,7 @@ from ..helpers.result import Result
 ################# START ###########################
 # For changes here to Enter:
 capital = 20000  # Capital in Rupies 20,000 ex: capital = 20000
-target = 3  # target in percentage 1%
+target = 1.7  # target in percentage 1%
 
 # (buybreakout - sellbreakout)range in percentage ex: rangeFrom = 1 is 1%, ex: rangeTo=1.5 is 1.5%
 rangeFrom = 1

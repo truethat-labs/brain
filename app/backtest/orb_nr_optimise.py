@@ -73,7 +73,18 @@ for symbol in UseSymbols:
         dateName.append(sorted([datetime.strptime(
             x.replace('.json', ''), '%d-%m-%Y') for x in os.listdir(fullPath)]))
 
-dateName = sorted(set(np.array(dateName).flatten()))
+# TypeError: unhashable type: 'list'
+# set(np.array(dateName, dtype="object").flatten())
+flattenedDateName = np.array(dateName, dtype="object").flatten()
+tupeledDateName = []
+for fDateName in flattenedDateName:
+    fDateName = tuple(fDateName)
+    tupeledDateName.append(fDateName)
+
+# [-1] decides the date range that needs to be picked up
+dateName = sorted(set(tupeledDateName))[-1]
+pdb.set_trace()
+
 for date in dateName:
     date = datetime.strptime(
         str(date), '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%Y')
@@ -118,18 +129,17 @@ for date in dateName:
         for symbolData in sortedSym.values:
             # level 1 change | here increasing 0.1 higher price because to execute order
             # Difference between buy and sell
-            rangeDiff = abs(symbolData[0] - symbolData[2])
+            rangeDiff = abs(symbolData[2] - symbolData[3])
 
             # # For must execute order | If you need without 0.1 increment remove below 2 lines
             # symbolData[0] = symbolData[0] + 0.1
             # symbolData[2] = symbolData[2] - 0.1
-
-            symbol = symbolData[3]
+            symbol = symbolData[0]
             rangePercent = symbolData[1]
 
             if ((symbol in onlyBuy) | (symbol in onlySell)):
-                buyBreakout = symbolData[0]
-                sellBreakout = symbolData[2]
+                buyBreakout = symbolData[2]
+                sellBreakout = symbolData[3]
                 orbNrStoploss = Stoploss()
                 stopLossResult = orbNrStoploss.orbNrStoploss(
                     buyBreakout, sellBreakout, rangeDiff, capital, target)
@@ -137,7 +147,7 @@ for date in dateName:
             # Here for reverse stock interchange breakout values
             elif ((symbol in reverseBuy) | (symbol in reverseSell)):
                 buyBreakout = symbolData[2]
-                sellBreakout = symbolData[0]
+                sellBreakout = symbolData[3]
                 orbNrStoploss = Stoploss()
                 stopLossResult = orbNrStoploss.orbNrStoploss(
                     buyBreakout, sellBreakout, rangeDiff, capital, target)
@@ -190,7 +200,7 @@ for date in dateName:
                 symbolStatus = "buy"
             if symbol in onlySell:
                 buyBreakout = 50000
-                symbolStatus = "sell"    
+                symbolStatus = "sell"
             if (symbol in reverseBuy):
                 sellBreakout = 50000
                 symbolStatus = "reverseBuy"

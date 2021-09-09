@@ -7,7 +7,6 @@ underscore.py==0.1.6
 iteration-utilities==0.7.0
 scipy==1.2.0
 scikit-learn==0.20.2
-tensorflow==1.7.0
 websocket-client
 slackclient==2.0.0
 websocket-client

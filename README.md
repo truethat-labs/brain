@@ -32,3 +32,9 @@
   *From underscore page: Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. 
   -->
   5. pip3 install underscore.py
+
+------
+
+ORB NR Running Steps:
+
+- `python3 -m app.backtest.orb_nr_optimise`
