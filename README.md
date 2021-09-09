@@ -38,3 +38,51 @@
 ORB NR Running Steps:
 
 - `python3 -m app.backtest.orb_nr_optimise`
+
+---
+
+### GET FORMATTED DATA
+Import with 
+
+`from ..helpers.formatted_data import FormattedData`
+
+```
+formattedData = FormattedData()
+data = formattedData.get(SYMBOL)
+```
+
+Data format:
+```
+[
+  {
+    name: SYMBOL NAME,
+    days: [
+      { 
+        date: DATE, 
+        open: OPEN, 
+        high: HIGH, 
+        low: LOW, 
+        close: CLOSE, 
+        volume: VOLUME 
+      },
+      ...
+    ],
+    minutes: [
+      [
+        DATE,
+        [
+          {
+            date: DATE, 
+            open: OPEN, 
+            high: HIGH, 
+            low: LOW, 
+            close: CLOSE, 
+            volume: VOLUME
+          },
+          ...
+        ]
+      ]
+    ]
+  }
+]
+```
