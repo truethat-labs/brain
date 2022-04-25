@@ -83,7 +83,6 @@ for fDateName in flattenedDateName:
 
 # [-1] decides the date range that needs to be picked up
 dateName = sorted(set(tupeledDateName))[-1]
-pdb.set_trace()
 
 for date in dateName:
     date = datetime.strptime(
